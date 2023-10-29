@@ -1,10 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
+import "./css/custom.css";
+
+import Header from "./component/Header/header";
+import ShuffleLayout from "./component/content/shuffleLayout";
 
 function App() {
   return (
     <div className="App">
-      <div>ver1</div>
+      <Header />
+      <ShuffleLayout />
     </div>
   );
 }
