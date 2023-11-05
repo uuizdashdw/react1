@@ -3,6 +3,11 @@
   padding: 0;
   list-style: none;
   box-sizing: border-box;
+  color: #000;
+}
+
+a {
+  text-decoration: none;
 }
 
 .container {
@@ -30,4 +35,66 @@
 
 .EditorWrapper {
   text-align: center;
+  padding: 2rem 0;
+}
+
+.EditorWrapper .EditorTitle {
+  margin-bottom: 3rem;
+}
+
+.EditorWrapper .editorContainer {
+  max-width: 62.5%;
+  margin: 0 auto;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.textAreaWrapper {
+  align-items: flex-start;
+}
+
+.input {
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.textArea {
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  resize: none;
+  width: 93%;
+  height: 500px;
+}
+
+#select {
+  width: 82%;
+  outline: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.btn {
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+}
+
+.emotionWrapper {
+  justify-content: space-between;
 }

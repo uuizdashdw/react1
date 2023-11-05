@@ -2,9 +2,13 @@ const Header = () => {
   return (
     <header id="header">
       <div className="container headerWrapper">
-        <div>로고</div>
+        <div>
+          <a href="/">홈으로</a>
+        </div>
         <ul id="gnb">
-          <li>GNB 1</li>
+          <li>
+            <a href="/list">일기 목록</a>
+          </li>
           <li>GNB 2</li>
           <li>GNB 3</li>
         </ul>

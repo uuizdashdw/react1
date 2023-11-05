@@ -5,14 +5,23 @@ import "./App.css";
 import Header from "./components/common/Header";
 
 // layouts //
-import DiaryLayout from "./layout/DiaryLayout.js";
+import DiaryEditorLayout from "./layout/DiaryEditorLayout.js";
+import DiaryListLayout from "./layout/DiaryListLayout";
+
+//Router //
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <Header />
       <main>
-        <DiaryLayout />
+        <Router>
+          <Routes>
+            <Route path="/" element={<DiaryEditorLayout />} />
+            <Route path="/list" element={<DiaryListLayout />} />
+          </Routes>
+        </Router>
       </main>
     </div>
   );
