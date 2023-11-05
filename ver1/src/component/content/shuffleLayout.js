@@ -9,16 +9,12 @@ import data from "../../json/data";
 import React, { useState } from "react";
 
 const ShuffleLayout = () => {
-  //   let json = [...data];
-  //   console.log(data);
   const [json, setJson] = useState([...data]);
   const [timer, setTimer] = useState(null);
 
   // 셔플 시작
   const StartShuffle = () => {
-    if (timer) {
-      clearInterval(timer);
-    }
+    if (timer) clearInterval(timer);
 
     const newTimer = setInterval(() => {
       shuffleEvent();
