@@ -1,7 +1,11 @@
-const DiaryListLayout = () => {
+import DiaryList from "../components/DiaryList";
+
+const DiaryListLayout = (props) => {
+  const { diaryList } = props;
+
   return (
-    <div>
-      <div>리스트</div>
+    <div className="container">
+      <DiaryList diaryList={diaryList} />
     </div>
   );
 };

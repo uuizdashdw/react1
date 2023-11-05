@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = (eventProps) => {
+  const { onCreateDiary } = eventProps;
   const refs = {
     authorInput: useRef(),
     contentInput: useRef(),
@@ -38,8 +39,8 @@ const DiaryEditor = () => {
       alert("최소 5글자 이상 입력해주세요");
       return;
     }
+    onCreateDiary(state.author, state.content, state.emotion);
     alert("저장되었습니다.");
-    console.log(state);
   };
 
   return (

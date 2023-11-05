@@ -1,10 +1,11 @@
 // Components //
 import DiaryEditor from "../components/DiaryEditor";
 
-const DiaryLayout = () => {
+const DiaryLayout = (eventProps) => {
+  const { onCreateDiary } = eventProps;
   return (
     <div className="container">
-      <DiaryEditor />
+      <DiaryEditor onCreateDiary={onCreateDiary} />
     </div>
   );
 };
