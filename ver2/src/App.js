@@ -1,10 +1,19 @@
-import logo from "./logo.svg";
+// Styles
 import "./App.css";
+
+// Header //
+import Header from "./components/common/Header";
+
+// layouts //
+import DiaryLayout from "./layout/DiaryLayout.js";
 
 function App() {
   return (
     <div className="App">
-      <div>ver2</div>
+      <Header />
+      <main>
+        <DiaryLayout />
+      </main>
     </div>
   );
 }
