@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "./components/common/Header";
 
 // layouts //
+import HomeLayout from "./layout/HomeLayout";
 import DiaryEditorLayout from "./layout/DiaryEditorLayout.js";
 import DiaryListLayout from "./layout/DiaryListLayout";
 
@@ -18,7 +19,8 @@ function App() {
       <main>
         <Router>
           <Routes>
-            <Route path="/" element={<DiaryEditorLayout />} />
+            <Route path="/" element={<HomeLayout />} />
+            <Route path="/edit" element={<DiaryEditorLayout />} />
             <Route path="/list" element={<DiaryListLayout />} />
           </Routes>
         </Router>

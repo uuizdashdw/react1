@@ -33,6 +33,18 @@ a {
   gap: 2rem;
 }
 
+.container.home {
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container.home h1 {
+  font-size: 2rem;
+}
+
 .EditorWrapper {
   text-align: center;
   padding: 2rem 0;
