@@ -29,18 +29,33 @@ const DiaryEditor = (eventProps) => {
     setTimer(newTimer);
   };
 
+  // 저장하기
   const isSubmitHandler = () => {
-    if (state.author.length < 1) {
-      alert("최소 1글자 이상 입력해주세요");
-      return;
-    }
+    if (timer) clearTimeout(timer);
 
-    if (state.content.length < 5) {
-      alert("최소 5글자 이상 입력해주세요");
-      return;
-    }
-    onCreateDiary(state.author, state.content, state.emotion);
-    alert("저장되었습니다.");
+    const newTimer = setTimeout(() => {
+      if (state.author.length < 1) {
+        alert("최소 1글자 이상 입력해주세요");
+        return;
+      }
+
+      if (state.content.length < 5) {
+        alert("최소 5글자 이상 입력해주세요");
+        return;
+      }
+
+      onCreateDiary(state.author, state.content, state.emotion);
+      alert("저장되었습니다.");
+    }, 200);
+
+    setTimer(newTimer);
+
+    console.log("에디어", state);
+    setState({
+      author: "",
+      content: "",
+      emotion: 1,
+    });
   };
 
   return (

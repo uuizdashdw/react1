@@ -52,7 +52,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //   },
 // ];
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function App() {
   const [data, setData] = useState([]);
@@ -71,6 +71,8 @@ function App() {
 
     dataId.current += 1;
     setData([newDiary, ...data]);
+
+    console.log(data);
   };
 
   return (
