@@ -4,130 +4,129 @@
   list-style: none;
   box-sizing: border-box;
   color: #000;
-}
-
-a {
   text-decoration: none;
 }
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-}
-
+/* Header */
 #header {
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
-#header .headerWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-#header #gnb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.container.home {
-  text-align: center;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container.home h1 {
-  font-size: 2rem;
-}
-
-.EditorWrapper {
-  text-align: center;
-  padding: 2rem 0;
-}
-
-.EditorWrapper .EditorTitle {
-  margin-bottom: 3rem;
-}
-
-.EditorWrapper .editorContainer {
+.container {
   max-width: 62.5%;
   margin: 0 auto;
 }
 
-.contentWrapper {
+.title {
+  text-align: center;
+  /* margin-bottom: 2rem; */
+  font-size: 2rem;
+}
+
+/* Form */
+
+.DiaryItem {
+  padding: 3rem 0;
+}
+
+ul.form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
-.textAreaWrapper {
+ul.form li {
+  width: 100%;
+  display: flex;
   align-items: flex-start;
 }
 
-.input {
-  outline: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.5rem;
-  font-size: 1rem;
+ul.form .label {
+  margin-right: 1rem;
 }
 
-.textArea {
+ul.form .input {
   outline: none;
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 0.5rem;
-  font-size: 1rem;
+  padding: 0.5rem 0.25rem;
+}
+
+ul.form .authorInput {
+  width: 50%;
+}
+
+ul.form .contentInput {
   resize: none;
-  width: 93%;
-  height: 500px;
+  width: 94%;
+  height: 300px;
 }
 
-#select {
-  width: 82%;
-  outline: none;
+ul.form .emotionInput {
+  width: 86%;
+  text-align: center;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.btnWrapper {
   text-align: center;
-  padding: 0.5rem 0;
 }
 
 .btn {
-  font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #fff;
-  padding: 0.5rem 1.25rem;
+  background-color: transparent;
+  color: #000;
+  width: 100%;
+  padding: 0.5rem;
   cursor: pointer;
 }
 
-.emotionWrapper {
-  justify-content: space-between;
+/* DiaryList */
+
+.DiaryList .title {
+  margin-bottom: 1rem;
 }
 
-.diaryList h2 {
-  font-size: 1.75rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.list {
-  border: 1px solid #ccc;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+.card {
+  padding: 1rem;
+  background-color: #eee;
+  margin-bottom: 1rem;
   border-radius: 4px;
 }
 
-.list .box:not(:last-child) {
-  margin-bottom: 0.75rem;
+.card .cardTitle {
+  font-weight: 700;
 }
 
-.list .boxTitle {
-  font-weight: bold;
+.card div:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.card .contentInput {
+  resize: none;
+  width: 94%;
+  height: 150px;
+  outline: none;
+}
+
+.card .contentSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.card .contentSection .cardContent {
+  width: 94%;
+}
+
+.card .emotionInput {
+  width: 85.5%;
+  padding: 0.5rem 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
