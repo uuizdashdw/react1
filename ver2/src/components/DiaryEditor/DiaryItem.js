@@ -9,10 +9,6 @@ const DiaryItem = ({
   onRemoveDiary,
   onEditDiary,
 }) => {
-  useEffect(() => {
-    console.log(`${id}번째 일기 아이템 렌더!`);
-  });
-
   const [edit, setEdit] = useState(false);
   const isEditToggle = () => setEdit(!edit);
 

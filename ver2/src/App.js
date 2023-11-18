@@ -9,15 +9,41 @@ import DiaryList from "./components/DiaryEditor/DiaryList";
 // Header //
 import Header from "./components/common/Header";
 
-import { useState, useRef, useEffect, useMemo, useCallback } from "react";
+import { useRef, useEffect, useMemo, useCallback, useReducer } from "react";
 // import OptimizedTest from "./OptimizedTest";
 // import LifeCycle from "./LifeCycle";
 
-// API 주소
-// https://jsonplaceholder.typicode.com/comments
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      const created_date = new Date().getTime();
+      const newDiary = {
+        ...action.data,
+        created_date,
+      };
+      return [...newDiary, state];
+    }
+    case "REMOVE": {
+      return state.filter((it) => it.id !== state.targetId);
+    }
+    case "EDIT": {
+      return state.map((it) =>
+        it.id === action.targetId
+          ? { ...it, content: action.newContent, emtion: action.newEmotion }
+          : it
+      );
+    }
+    default:
+      return state;
+  }
+};
 
 function App() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  const [data, dispatch] = useReducer(reducer, []);
   const diaryId = useRef(0);
 
   // API 호출
@@ -37,7 +63,7 @@ function App() {
       };
     });
 
-    setData(newData);
+    dispatch({ type: "INIT", data: newData });
   };
 
   useEffect(() => {
@@ -46,37 +72,24 @@ function App() {
 
   // Diary 추가 //
   const onCreateDiary = useCallback((author, content, emotion) => {
-    const created_date = new Date().getTime();
-
-    const newDiary = {
-      author,
-      content,
-      emotion,
-      created_date,
-      id: diaryId.current,
-    };
+    dispatch({
+      type: "CREATE",
+      data: { author, content, emotion, id: diaryId.current },
+    });
 
     diaryId.current += 1;
-
-    setData((data) => [newDiary, ...data]);
   }, []);
 
   //Diary 삭제
   // 최적화 (useCallback) //
   const onRemoveDiary = useCallback((targetId) => {
-    setData((data) => data.filter((item) => item.id !== targetId));
+    dispatch({ type: "REMOVE", targetId });
   }, []);
 
   // Diary 수정하기
   // 최적화 (useCallback) //
   const onEditDiary = useCallback((targetId, newContent, newEmotion) => {
-    setData((data) =>
-      data.map((item) =>
-        item.id === targetId
-          ? { ...item, content: newContent, emotion: newEmotion }
-          : item
-      )
-    );
+    dispatch({ type: "EDIT", targetId, newContent, newEmotion });
   }, []);
 
   // useMemo 를 사용한 감정점수를 기준으로 한 일기 평균 계산 최적화(메모이제이션) //
