@@ -62,21 +62,22 @@ function App() {
   }, []);
 
   //Diary 삭제
-  const onRemoveDiary = (targetId) => {
-    const newDiaryList = data.filter((item) => item.id !== targetId);
-    setData(newDiaryList);
-  };
+  // 최적화 (useCallback) //
+  const onRemoveDiary = useCallback((targetId) => {
+    setData((data) => data.filter((item) => item.id !== targetId));
+  }, []);
 
   // Diary 수정하기
-  const onEditDiary = (targetId, newContent, newEmotion) => {
-    setData(
+  // 최적화 (useCallback) //
+  const onEditDiary = useCallback((targetId, newContent, newEmotion) => {
+    setData((data) =>
       data.map((item) =>
         item.id === targetId
           ? { ...item, content: newContent, emotion: newEmotion }
           : item
       )
     );
-  };
+  }, []);
 
   // useMemo 를 사용한 감정점수를 기준으로 한 일기 평균 계산 최적화(메모이제이션) //
   // 메모이제이션이란 함수의 결과를 이전에 계산한 값으로 재사용 할 수 있기 때문에   //
