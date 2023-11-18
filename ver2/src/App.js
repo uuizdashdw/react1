@@ -9,7 +9,13 @@ import DiaryList from "./components/DiaryEditor/DiaryList";
 // Header //
 import Header from "./components/common/Header";
 
-import { useRef, useEffect, useMemo, useCallback, useReducer } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useMemo,
+  useCallback,
+  useReducer,
+} from "react";
 // import OptimizedTest from "./OptimizedTest";
 // import LifeCycle from "./LifeCycle";
 
@@ -24,7 +30,7 @@ const reducer = (state, action) => {
         ...action.data,
         created_date,
       };
-      return [...newDiary, state];
+      return [newDiary, ...state];
     }
     case "REMOVE": {
       return state.filter((it) => it.id !== state.targetId);
@@ -40,6 +46,9 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 function App() {
   // const [data, setData] = useState([]);
@@ -92,6 +101,10 @@ function App() {
     dispatch({ type: "EDIT", targetId, newContent, newEmotion });
   }, []);
 
+  const memoizedDispatches = useMemo(() => {
+    return { onCreateDiary, onRemoveDiary, onEditDiary };
+  }, []);
+
   // useMemo 를 사용한 감정점수를 기준으로 한 일기 평균 계산 최적화(메모이제이션) //
   // 메모이제이션이란 함수의 결과를 이전에 계산한 값으로 재사용 할 수 있기 때문에   //
   // 동일한 입력에 대해서는 함수를 다시 사용하지 않고 이전에 계산한 결과를 재사용   //
@@ -108,25 +121,25 @@ function App() {
   const { goodCount, badCount, goodRatio } = getDiaryAnalysis;
 
   return (
-    <div className="App">
-      <Header />
-      {/* <LifeCycle /> */}
-      {/* <OptimizedTest /> */}
-      <main>
-        <DiaryEditorLayout onCreateDiary={onCreateDiary} />
-        <div className="container">
-          <p>전체 일기 갯수 : {data.length}개</p>
-          <p>기분 좋은 일기 갯수 : {goodCount}개</p>
-          <p>기분 나쁜 일기 갯수 : {badCount}개</p>
-          <p>기분 좋은 일기 평균 : {goodRatio} 개</p>
+    <DiaryStateContext.Provider value={data}>
+      <DiaryDispatchContext.Provider value={memoizedDispatches}>
+        <div className="App">
+          <Header />
+          {/* <LifeCycle /> */}
+          {/* <OptimizedTest /> */}
+          <main>
+            <DiaryEditorLayout />
+            <div className="container">
+              <p>전체 일기 갯수 : {data.length}개</p>
+              <p>기분 좋은 일기 갯수 : {goodCount}개</p>
+              <p>기분 나쁜 일기 갯수 : {badCount}개</p>
+              <p>기분 좋은 일기 평균 : {goodRatio} 개</p>
+            </div>
+            <DiaryList />
+          </main>
         </div>
-        <DiaryList
-          diaryList={data}
-          onRemoveDiary={onRemoveDiary}
-          onEditDiary={onEditDiary}
-        />
-      </main>
-    </div>
+      </DiaryDispatchContext.Provider>
+    </DiaryStateContext.Provider>
   );
 }
 
