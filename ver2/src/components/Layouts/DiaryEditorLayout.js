@@ -1,9 +1,9 @@
 import DiaryEditor from "../DiaryEditor/DiaryEditor";
 
-const DiaryEditorLayout = ({ onCreateDiary }) => {
+const DiaryEditorLayout = () => {
   return (
     <div>
-      <DiaryEditor onCreateDiary={onCreateDiary} />
+      <DiaryEditor />
     </div>
   );
 };

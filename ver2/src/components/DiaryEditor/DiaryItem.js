@@ -1,14 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { DiaryDispatchContext } from "../../App";
 
-const DiaryItem = ({
-  author,
-  content,
-  emotion,
-  created_date,
-  id,
-  onRemoveDiary,
-  onEditDiary,
-}) => {
+const DiaryItem = ({ author, content, emotion, created_date, id }) => {
+  const { onRemoveDiary, onEditDiary } = useContext(DiaryDispatchContext);
+
   const [edit, setEdit] = useState(false);
   const isEditToggle = () => setEdit(!edit);
 
